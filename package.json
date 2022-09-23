@@ -1,0 +1,32 @@
+{
+    "name": "js-wdio-mocha-onliner.by",
+    "version": "1.0.0",
+    "description": "testing scenarios around onliner.by website",
+    "main": "index.js",
+    "scripts": {
+        "test": "wdio wdio.conf.js",
+        "wdio": "wdio run wdio.conf.js"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/yojoman/js-wdio-mocha-onliner.by.git"
+    },
+    "author": "Pavel Abramuk",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/yojoman/js-wdio-mocha-onliner.by/issues"
+    },
+    "homepage": "https://github.com/yojoman/js-wdio-mocha-onliner.by#readme",
+    "dependencies": {
+        "mocha": "^10.0.0",
+        "wdio": "^6.0.1"
+    },
+    "devDependencies": {
+        "@wdio/cli": "^7.24.1",
+        "@wdio/local-runner": "^7.24.1",
+        "@wdio/mocha-framework": "^7.24.1",
+        "@wdio/spec-reporter": "^7.24.1",
+        "chromedriver": "^105.0.1",
+        "wdio-chromedriver-service": "^7.3.2"
+    }
+}
