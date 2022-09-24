@@ -24,13 +24,13 @@ describe("Onliner.by test example", () => {
     assert.sameMembers(resources.footerExpectedValue, actualValue);
   });
 
-  it("Should open 'О компании' page", async () => {
+  it("Should open About Company page", async () => {
     await aboutCompanyPage.getButton("О компании").scrollIntoView();
     await aboutCompanyPage.getButton("О компании").click();
     expect(await browser.getTitle()).to.equal("О сайте");
   });
 
-  it("'О компании' page should contain contact info", async () => {
+  it("About Company page should contain contact info", async () => {
     await aboutCompanyPage.phoneNumbers.scrollIntoView();
     expect(await aboutCompanyPage.phoneNumbers.isDisplayed()).to.equal(true);
     expect(await aboutCompanyPage.emailAddress.isDisplayed()).to.equal(true);
