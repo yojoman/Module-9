@@ -1,6 +1,7 @@
 const mainPage = require("../pages/main.page");
 const aboutCompanyPage = require("../pages/aboutCompany.page");
 const catalogPage = require("../pages/catalog.page");
+const resources = require("../resources/data.js");
 const { expect, assert } = require("chai");
 
 describe("Onliner.by test example", () => {
@@ -8,53 +9,24 @@ describe("Onliner.by test example", () => {
     await browser.maximizeWindow();
   });
 
-  //   after(async () => {
-  //     await browser.refresh();
-  //     await loginPage.verifyTitle("Proton Account");
-  //     await browser.saveScreenshot("testing result.png");
-  //   });
-
   it("Should open main page", async () => {
     await mainPage.openPage();
     expect(await browser.getTitle()).to.equal("Onliner");
   });
 
   it("Main page should contain correct header menu", async () => {
-    const expectedValue = [
-      "Каталог",
-      "Новости",
-      "Автобарахолка",
-      "Дома и квартиры",
-      "Услуги",
-      "Барахолка",
-      "Форум",
-    ];
     const actualValue = await mainPage.getHeaderMenuText();
-    assert.sameMembers(expectedValue, actualValue);
+    assert.sameMembers(resources.headerExpectedValue, actualValue);
   });
 
   it("Main page should contain correct footer menu", async () => {
-    const expectedValue = [
-      "О компании",
-      "Контакты редакции",
-      "Реклама",
-      "Тарифы",
-      "Вакансии",
-      "Манифест",
-      "Пользовательское соглашение",
-      "Публичные договоры",
-      "Политика конфиденциальности",
-      "Поддержка пользователей",
-      "Правила возврата",
-    ];
     const actualValue = await mainPage.getFooterMenuText();
-    assert.sameMembers(expectedValue, actualValue);
+    assert.sameMembers(resources.footerExpectedValue, actualValue);
   });
 
   it("Should open 'О компании' page", async () => {
-    await aboutCompanyPage.getButton("компании").scrollIntoView();
-    // переместитm getbutton v main
-    await aboutCompanyPage.getButton("компании").click();
+    await aboutCompanyPage.getButton("О компании").scrollIntoView();
+    await aboutCompanyPage.getButton("О компании").click();
     expect(await browser.getTitle()).to.equal("О сайте");
   });
 
@@ -94,6 +66,5 @@ describe("Onliner.by test example", () => {
     await catalogPage.smartfoniFrameButton.waitForDisplayed();
     await catalogPage.smartfoniFrameButton.click();
     expect(await catalogPage.smartfoniPageTitle.isDisplayed()).to.equal(true);
-    await browser.pause(1000);
   });
 });
