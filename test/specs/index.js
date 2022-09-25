@@ -14,12 +14,12 @@ describe("Onliner.by test example", () => {
     expect(await browser.getTitle()).to.equal("Onliner");
   });
 
-  it("Main page should contain correct header menu", async () => {
+  it("Main page should contain correct header info", async () => {
     const actualValue = await mainPage.getHeaderMenuText();
     assert.sameMembers(resources.headerExpectedValue, actualValue);
   });
 
-  it("Main page should contain correct footer menu", async () => {
+  it("Main page should contain correct footer info", async () => {
     const actualValue = await mainPage.getFooterMenuText();
     assert.sameMembers(resources.footerExpectedValue, actualValue);
   });
@@ -28,6 +28,9 @@ describe("Onliner.by test example", () => {
     await aboutCompanyPage.getButton("О компании").scrollIntoView();
     await aboutCompanyPage.getButton("О компании").click();
     expect(await browser.getTitle()).to.equal("О сайте");
+    expect(
+      await aboutCompanyPage.getCommonPageTitle("О сайте").isDisplayed()
+    ).to.equal(true);
   });
 
   it("About Company page should contain contact info", async () => {
@@ -65,6 +68,18 @@ describe("Onliner.by test example", () => {
     await catalogPage.mobilnieTelefoniFrameButton.click();
     await catalogPage.smartfoniFrameButton.waitForDisplayed();
     await catalogPage.smartfoniFrameButton.click();
-    expect(await catalogPage.smartfoniPageTitle.isDisplayed()).to.equal(true);
+    expect(
+      await catalogPage.getCommonPageTitle("Мобильные телефоны").isDisplayed()
+    ).to.equal(true);
+  });
+
+  it("Should find and open Iphone 13 128gb Dark Night page", async () => {
+    await catalogPage.apple13DarknNightLink.scrollIntoView();
+    await catalogPage.apple13DarknNightLink.click();
+    expect(
+      await catalogPage
+        .getCommonPageTitle("Смартфон Apple iPhone 13 128GB (темная ночь)")
+        .isDisplayed()
+    ).to.equal(true);
   });
 });
