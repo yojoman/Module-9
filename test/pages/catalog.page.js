@@ -21,8 +21,8 @@ class CatalogPage extends BasePage {
     return $('.//a[@href="https://catalog.onliner.by/mobile"]');
   }
 
-  get smartfoniPageTitle() {
-    return $('.//h1[text()="Мобильные телефоны"]');
+  get apple13DarknNightLink() {
+    return $('.//span[text()="Смартфон Apple iPhone 13 128GB (темная ночь)"]');
   }
 }
 
