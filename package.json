@@ -5,8 +5,8 @@
     "main": "index.js",
     "scripts": {
         "allure": "allure open reports/allure-report",
-        "test": "wdio wdio.conf.js",
-        "wdio": "wdio run wdio.conf.js"
+        "test": "wdio test/config/wdio.conf.js",
+        "wdio": "wdio run test/config/wdio.conf.js"
     },
     "repository": {
         "type": "git",
