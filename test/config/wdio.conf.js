@@ -1,4 +1,3 @@
-const allure = require("allure-commandline");
 exports.config = {
   //
   // ====================
@@ -133,15 +132,6 @@ exports.config = {
   // The only one supported by default is 'dot'
   // see also: https://webdriver.io/docs/dot-reporter
   reporters: ["spec"],
-  // reporters: [
-  //   [
-  //     "allure",
-  //     {
-  //       outputDir: "./reports/allure-results",
-  //     },
-  //   ],
-  // ],
-
   //
   // Options to be passed to Mocha.
   // See the full list at http://mochajs.org/
@@ -286,30 +276,8 @@ exports.config = {
    * @param {Array.<Object>} capabilities list of capabilities details
    * @param {<Object>} results object containing test results
    */
-  // onComplete: function () {
-  //   const reportError = new Error("Could not generate Allure report");
-  //   const generation = allure([
-  //     "generate",
-  //     "reports/allure-results",
-  //     "--clean",
-  //     "-o",
-  //     "reports/allure-report",
-  //   ]);
-  //   return new Promise((resolve, reject) => {
-  //     const generationTimeout = setTimeout(() => reject(reportError), 10000);
-
-  //     generation.on("exit", function (exitCode) {
-  //       clearTimeout(generationTimeout);
-
-  //       if (exitCode !== 0) {
-  //         return reject(reportError);
-  //       }
-
-  //       console.log("Allure report successfully generated");
-  //       resolve();
-  //     });
-  //   });
-  // },
+  // onComplete: function() {
+  // }
   /**
    * Gets executed when a refresh happens.
    * @param {String} oldSessionId session ID of the old session
