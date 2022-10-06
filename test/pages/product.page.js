@@ -1,19 +1,23 @@
 const BasePage = require("./base.page.js");
 
 class ProductPage extends BasePage {
-  get offersButton() {
-    return $(".//span[text()='Предложения продавцов']");
+  getProductButton(buttonName) {
+    return $(`.//span[text()='${buttonName}']`);
   }
 
-  get offersList() {
+  get offersListFrame() {
     return $(".//div[@class='offers-list']");
+  }
+
+  get forumMessagesFrame() {
+    return $(".//ul[@class='b-messages-thread']");
   }
 
   get priceOfProduct() {
     return $(".//a[contains(@class,'js-description-price-link')]");
   }
 
-  get productIamge() {
+  get productImage() {
     return $(".//img[@id='device-header-image']");
   }
 
@@ -21,10 +25,9 @@ class ProductPage extends BasePage {
     return $(`.//h1[contains(text(),'${text}')]`);
   }
 
-  async openOffersPage() {
-    await this.offersButton.waitForDisplayed();
-    await this.offersButton.click();
-    await this.offersList.waitForDisplayed();
+  async clickOnButton(buttonName) {
+    await this.getProductButton(buttonName).waitForDisplayed();
+    await this.getProductButton(buttonName).click();
   }
 }
 

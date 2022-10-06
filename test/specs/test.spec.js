@@ -1,5 +1,6 @@
 const mainPage = require("../pages/main.page");
 const productPage = require("../pages/product.page");
+const searchPage = require("../pages/search.page");
 const resources = require("../resources/data.js");
 const { expect, assert } = require("chai");
 
@@ -24,11 +25,11 @@ describe("Onliner.by test example", () => {
   });
 
   it("Should open searched item page", async () => {
-    await mainPage.typeInSearhField(
+    await searchPage.typeInSearhField(
       "iPhone 14 Pro Max 256GB (космический черный)"
     );
-    await mainPage.openFirstItemFromSearchField();
-    expect(await productPage.getTitle()).to.include(
+    await searchPage.openFirstItemFromSearchField();
+    expect(await searchPage.getTitle()).to.include(
       "iPhone 14 Pro Max 256GB (космический черный)"
     );
   });
@@ -40,11 +41,16 @@ describe("Onliner.by test example", () => {
         .isDisplayed()
     ).to.equal(true);
     expect(await productPage.priceOfProduct.isDisplayed()).to.equal(true);
-    expect(await productPage.productIamge.isDisplayed()).to.equal(true);
+    expect(await productPage.productImage.isDisplayed()).to.equal(true);
   });
 
   it("Should open Offers page", async () => {
-    await productPage.openOffersPage();
-    expect(await productPage.offersList.isDisplayed()).to.equal(true);
+    await productPage.clickOnButton("Предложения продавцов");
+    expect(await productPage.offersListFrame.isDisplayed()).to.equal(true);
+  });
+
+  it("Should open Discuss on forum page", async () => {
+    await productPage.clickOnButton("Обсуждение на форуме");
+    expect(await productPage.forumMessagesFrame.isDisplayed()).to.equal(true);
   });
 });
