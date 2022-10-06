@@ -3,11 +3,7 @@ module.exports = class BasePage {
     return await browser.url("/");
   }
 
-  getButton(buttonName) {
-    return $(`.//a[contains(text(),'${buttonName}')]`);
-  }
-
-  getCommonPageTitle(title) {
-    return $(`.//h1[contains(text(),"${title}")]`);
+  async getTitle() {
+    return browser.getTitle();
   }
 };

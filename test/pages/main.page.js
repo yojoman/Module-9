@@ -9,10 +9,6 @@ class MainPage extends BasePage {
     return $$('.//a[contains(@class,"footer-style__link footer-style__link")]');
   }
 
-  get catalogMenuButton() {
-    return $('.//span[contains(text(),"Каталог")] [@class="b-main-navigation__text"]')
-  }
-
   getHeaderMenuText() {
     const elements = this.headerMenu.map((element) => element.getText());
     return elements;
