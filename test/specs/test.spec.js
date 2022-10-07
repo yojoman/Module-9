@@ -16,19 +16,27 @@ describe("Onliner.by test example", () => {
 
   it("Main page should contain correct header info", async () => {
     const headerActualValue = await mainPage.getHeaderMenuText();
-    assert.sameMembers(resources.headerExpectedValue, headerActualValue);
+    assert.sameMembers(
+      resources.headerExpectedValue,
+      headerActualValue,
+      "Main page contain incorrect header values"
+    );
   });
 
   it("Main page should contain correct footer info", async () => {
     const footerActualValue = await mainPage.getFooterMenuText();
-    assert.sameMembers(resources.footerExpectedValue, footerActualValue);
+    assert.sameMembers(
+      resources.footerExpectedValue,
+      footerActualValue,
+      "Main page contain incorrect footer values"
+    );
   });
 
   it("Should open searched item page", async () => {
     await searchPage.typeInSearhField(
       "iPhone 14 Pro Max 256GB (космический черный)"
     );
-    await searchPage.openFirstItemFromSearchField();
+    await searchPage.openItemFromSearchField(1);
     expect(await searchPage.getTitle()).to.include(
       "iPhone 14 Pro Max 256GB (космический черный)"
     );

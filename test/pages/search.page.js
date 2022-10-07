@@ -5,8 +5,8 @@ class SearchPage extends BasePage {
     return $(".//input[@class='fast-search__input']");
   }
 
-  get firstItemInSearchField() {
-    return $(".//ul/li[@class='search__result'][1]");
+  getItemFromSearchField(number) {
+    return $(`.//ul/li[@class='search__result'][${number}]`);
   }
 
   async typeInSearhField(searchText) {
@@ -14,11 +14,11 @@ class SearchPage extends BasePage {
     await this.searchInputField.setValue(searchText);
   }
 
-  async openFirstItemFromSearchField() {
+  async openItemFromSearchField(number) {
     const getIframe = await browser.$(".//iframe[@class='modal-iframe']");
     browser.switchToFrame(getIframe);
-    await this.firstItemInSearchField.waitForDisplayed();
-    await this.firstItemInSearchField.click();
+    await this.getItemFromSearchField(number).waitForDisplayed();
+    await this.getItemFromSearchField(number).click();
     browser.switchToParentFrame();
   }
 }
