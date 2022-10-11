@@ -5,6 +5,14 @@ class ProductPage extends BasePage {
     return $(`.//span[text()='${buttonName}']`);
   }
 
+  getCartTitleText(text) {
+    return $(`.//div[contains(text(),'${text}')]`);
+  }
+
+  getProductTitleText(text) {
+    return $(`.//h1[contains(text(),'${text}')]`);
+  }
+
   get offersListFrame() {
     return $(".//div[@class='offers-list']");
   }
@@ -19,10 +27,6 @@ class ProductPage extends BasePage {
 
   get productImage() {
     return $(".//img[@id='device-header-image']");
-  }
-
-  getProductTitleText(text) {
-    return $(`.//h1[contains(text(),'${text}')]`);
   }
 
   async clickOnButton(buttonName) {
