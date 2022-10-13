@@ -52,6 +52,22 @@ describe("Onliner.by test example", () => {
     expect(await productPage.productImage.isDisplayed()).to.equal(true);
   });
 
+  it("Should click on Ostavit Otziv button by using actionsPerform", async () => {
+    const getButtonOstavitOtzyv = $(".//a[contains(text(),'Оставить отзыв')]");
+    browser.performActions([
+      {
+        type: "pointer",
+        parameters: { pointerType: "mouse" },
+        actions: [
+          { type: "pointerMove", origin: "pointer", duration: 100, x: getButtonOstavitOtzyv.x, y: getButtonOstavitOtzyv.y},
+          { type: "pointerDown", origin: "pointer", button: 0 },
+          { type: "pointerUp", origin: "pointer", button: 0 },
+        ],
+      },
+    ]);
+    await browser.pause(3000);
+  });
+
   it("Should open Discuss on forum page", async () => {
     await productPage.clickOnButton("Обсуждение на форуме");
     await productPage.waitForElementDisplayed(productPage.forumMessagesFrame);
