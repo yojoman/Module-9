@@ -1,4 +1,5 @@
 const BasePage = require("./base.page.js");
+const logger = require("../config/logger.config");
 
 class ProductPage extends BasePage {
   getProductButton(buttonName) {
@@ -13,12 +14,8 @@ class ProductPage extends BasePage {
     return $(`.//h1[contains(text(),'${text}')]`);
   }
 
-  get offersListFrame() {
-    return $(".//div[@class='offers-list']");
-  }
-
-  get forumMessagesFrame() {
-    return $(".//ul[@class='b-messages-thread']");
+  getForumTitleText(text) {
+    return $(`.//a[contains(text(),"${text}")]`);
   }
 
   get priceOfProduct() {
@@ -30,8 +27,19 @@ class ProductPage extends BasePage {
   }
 
   async clickOnButton(buttonName) {
+    logger.debug(`Clicking on "${buttonName}" button`);
     await this.getProductButton(buttonName).waitForDisplayed();
     await this.getProductButton(buttonName).click();
+  }
+
+  async scrollAndClickOntoOffer() {
+    logger.info(`Scrolling and clicking on the first offer`);
+    await browser.execute(function () {
+      document
+        .querySelectorAll(".offers-list__button_cart")[1]
+        .scrollIntoView();
+      document.querySelectorAll(".offers-list__button_cart")[1].click();
+    });
   }
 }
 

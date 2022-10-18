@@ -52,44 +52,35 @@ describe("Onliner.by test example", () => {
     expect(await productPage.productImage.isDisplayed()).to.equal(true);
   });
 
-  it("Should click on Ostavit Otziv button by using actionsPerform", async () => {
-    const getButtonOstavitOtzyv = $(".//a[contains(text(),'Оставить отзыв')]");
-    browser.performActions([
-      {
-        type: "pointer",
-        parameters: { pointerType: "mouse" },
-        actions: [
-          { type: "pointerMove", origin: "pointer", duration: 100, x: getButtonOstavitOtzyv.x, y: getButtonOstavitOtzyv.y},
-          { type: "pointerDown", origin: "pointer", button: 0 },
-          { type: "pointerUp", origin: "pointer", button: 0 },
-        ],
-      },
-    ]);
-    await browser.pause(3000);
-  });
-
   it("Should open Discuss on forum page", async () => {
     await productPage.clickOnButton("Обсуждение на форуме");
-    await productPage.waitForElementDisplayed(productPage.forumMessagesFrame);
-    expect(await productPage.forumMessagesFrame.isDisplayed()).to.equal(true);
+    await productPage.waitForElementDisplayed(
+      productPage.getForumTitleText("Смартфон Apple iPhone 14")
+    );
+    expect(
+      await productPage
+        .getForumTitleText("Смартфон Apple iPhone 14")
+        .isDisplayed()
+    ).to.equal(true);
   });
 
   it("Should open Offers page", async () => {
     await productPage.back();
     await productPage.clickOnButton("Предложения продавцов");
-    await productPage.waitForElementDisplayed(productPage.offersListFrame);
-    expect(await productPage.offersListFrame.isDisplayed()).to.equal(true);
+    await productPage.waitForElementDisplayed(
+      productPage.getProductTitleText(
+        "iPhone 14 Pro Max 256GB (космический черный)"
+      )
+    );
+    expect(
+      await productPage
+        .getProductTitleText("iPhone 14 Pro Max 256GB (космический черный)")
+        .isDisplayed()
+    ).to.equal(true);
   });
 
   it("Should open Adverts page by using JSexecutor", async () => {
-    await browser.execute(function () {
-      document
-        .querySelectorAll(".offers-list__button_cart")[1]
-        .scrollIntoView();
-    });
-    await browser.execute(function () {
-      document.querySelectorAll(".offers-list__button_cart")[1].click();
-    });
+    await productPage.scrollAndClickOntoOffer();
     await productPage.waitForElementDisplayed(
       productPage.getCartTitleText("Товар добавлен в корзину")
     );
