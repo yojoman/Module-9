@@ -4,7 +4,7 @@ const searchPage = require("../pages/search.page");
 const resources = require("../resources/data.js");
 const { expect, assert } = require("chai");
 
-describe("Onliner.by test example", () => {
+describe("Onliner.by", () => {
   before(async () => {
     await browser.maximizeWindow();
   });
@@ -62,11 +62,11 @@ describe("Onliner.by test example", () => {
         .getForumTitleText("Смартфон Apple iPhone 14")
         .isDisplayed()
     ).to.equal(true);
+    await productPage.back();
   });
 
-  it("Should open Offers page", async () => {
-    await productPage.back();
-    await productPage.clickOnButton("Предложения продавцов");
+  it("Should open Offers page by using actionsPerform", async () => {
+    await productPage.clickOnOffersButton("Предложения продавцов");
     await productPage.waitForElementDisplayed(
       productPage.getProductTitleText(
         "iPhone 14 Pro Max 256GB (космический черный)"

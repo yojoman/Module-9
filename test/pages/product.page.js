@@ -32,6 +32,28 @@ class ProductPage extends BasePage {
     await this.getProductButton(buttonName).click();
   }
 
+  async clickOnOffersButton(buttonName) {
+    logger.debug(`Clicking on "${buttonName}" button`);
+    await browser.performActions([
+      {
+        type: "pointer",
+        id: "finger1",
+        parameters: { pointerType: "mouse" },
+        actions: [
+          {
+            type: "pointerMove",
+            origin: "pointer",
+            origin: await this.getProductButton(buttonName),
+            x: 0,
+            y: 0,
+          },
+          { type: "pointerDown", button: 0 },
+          { type: "pointerUp", button: 0 },
+        ],
+      },
+    ]);
+  }
+
   async scrollAndClickOntoOffer() {
     logger.info(`Scrolling and clicking on the first offer`);
     await browser.execute(function () {
